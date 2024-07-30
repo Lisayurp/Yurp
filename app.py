@@ -44,9 +44,9 @@ user_input = st.text_input("You:")
     # Text input for user
   
     # Check if user wants to quit
-    if user_input.lower() == "quit":
+if user_input.lower() == "quit":
         st.write("Rhea: Thank you. Take care!")
-    else:
+else:
         # Get response based on user input
         response = respond(user_input)
         st.write("Rhea:", response)
