@@ -10,7 +10,7 @@ import streamlit as st
 
 prompt = st.chat_input("What's Up")
 if prompt:
-    st.write({name}: {prompt}")
+    st.write("{name}: {prompt}")
     
 import re
 
@@ -34,7 +34,7 @@ def respond(user_input):
     return "I'm sorry, I didn't understand that. Can you please provide more details?"
 
 def chatbot():
-    st.write("Hi, I'm your medical assistant. How can I help you today?")
+    st.write("Hi, I'm your pediatric assistant. How can I help you today?")
     
 
 # Example conversation loop
