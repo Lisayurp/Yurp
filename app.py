@@ -8,9 +8,9 @@ if name:
 
 import streamlit as st
 
-prompt = st.chat_input("Say something")
+prompt = st.chat_input("What's Up")
 if prompt:
-    st.write(f"User has sent the following prompt: {prompt}")
+    st.write({name}: {prompt}")
     
 import re
 
@@ -44,11 +44,11 @@ def chatbot():
     
     # Check if user wants to quit
     if user_input.lower() == "quit":
-        st.write("Chatbot: Thank you. Take care!")
+        st.write("Rhea: Thank you. Take care!")
     else:
         # Get response based on user input
         response = respond(user_input)
-        st.write("Chatbot:", response)
+        st.write("Rhea:", response)
 
 if __name__ == "__main__":
     chatbot()
