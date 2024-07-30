@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("Hi! My name Rhea")
+st.title("Hi! My name is Rhea")
 name = st.text_input("Enter your name:")
 
 if name:
@@ -40,7 +40,7 @@ def respond(user_input):
 
 
 # Example conversation loop
-
+  user_input = st.text_input("You:")
     # Text input for user
   
     # Check if user wants to quit
