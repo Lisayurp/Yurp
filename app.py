@@ -2,16 +2,13 @@ import streamlit as st
 
 st.title("Hi! My name is Rhea")
 def chatbot():
-    st.write("Hi, I'm your pediatric assistant. How can I help you today?")  
+    st.write("Hi, I'm your pediatric assistant. How can I help you today?") 
+    
 name = st.text_input("Enter your name:")
-
 if name:
     st.write(f"Hello, {name}! Welcome to KidzCareHub.")
     
-  
-
 import streamlit as st
-
 import re
 
 # Define pairs of patterns and responses
@@ -36,7 +33,11 @@ def respond(user_input):
 
 
 # Example conversation loop
-user_input = st.text_input("You:")
+import streamlit as st
+
+prompt = st.chat_input("Say something")
+if prompt:
+    st.write(f"User has sent the following prompt: {prompt}")
     # Text input for user
   
     # Check if user wants to quit
