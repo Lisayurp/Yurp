@@ -45,9 +45,7 @@ else:
 if __name__ == "__main__":
     chatbot()
 
-import streamlit as st
 
-# Custom CSS for background
 st.markdown(
     """
     <style>
@@ -58,8 +56,8 @@ st.markdown(
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(to right, #003366, #ffa07a); /* Dark blue to light salmon */
-        color: #fff; /* Set default text color to white for better contrast */
+        background: linear-gradient(to right, #4169e1, #ffa07a, #ffffe0); /* Royal blue, orange, and light yellow */
+        color: #333; /* Set default text color */
         font-family: Arial, sans-serif;
     }
     .stApp {
@@ -69,7 +67,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
 
 
     
