@@ -47,6 +47,27 @@ if __name__ == "__main__":
 import streamlit as st
 
 # Custom CSS for background
+st.markdown(
+    """
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to right, #003366, #ffa07a); /* Dark blue to light salmon */
+        color: #fff; /* Set default text color to white for better contrast */
+        font-family: Arial, sans-serif;
+    }
+    .stApp {
+        background: transparent;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
 
