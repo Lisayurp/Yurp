@@ -11,7 +11,6 @@ def chatbot():
 
 import streamlit as st
 
-
 import re
 
 # Define pairs of patterns and responses
@@ -78,3 +77,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+
+
+    
