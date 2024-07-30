@@ -40,7 +40,7 @@ def respond(user_input):
 
 
 # Example conversation loop
-  user_input = st.text_input("You:")
+user_input = st.text_input("You:")
     # Text input for user
   
     # Check if user wants to quit
