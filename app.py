@@ -34,7 +34,7 @@ def respond(user_input):
 
 # Example conversation loop
 import streamlit as st
- user_input = input(f"{name}:" )
+user_input = input(f"{name}:" )
 prompt = st.chat_input("Say something")
 if prompt:
     st.write(f"User has sent the following prompt: {prompt}")
