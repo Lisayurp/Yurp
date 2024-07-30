@@ -11,10 +11,7 @@ def chatbot():
 
 import streamlit as st
 
-prompt = st.chat_input("What's Up")
-if prompt:
-    st.write(f"{name}: {prompt}")
-    
+
 import re
 
 # Define pairs of patterns and responses
