@@ -52,4 +52,32 @@ def chatbot():
 
 if __name__ == "__main__":
     chatbot()
-            
+
+
+
+
+
+
+
+import streamlit as st
+
+# Add custom CSS to the app
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: #f0f0f0; /* Light gray background */
+    }
+
+    .stApp {
+        background: url('https://example.com/background-image.jpg') no-repeat center center fixed; 
+        background-size: cover; /* Cover the entire page with the background image */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.title('My Streamlit App')
+st.write('Hello, world!')
+
