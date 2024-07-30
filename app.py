@@ -28,10 +28,7 @@ def respond(user_input):
     return "I'm sorry, I didn't understand that. Can you please provide more details?"
 
 # Example conversation loop
-def chatbot():
-    st.title("Medical Assistant Chatbot")
-    st.write("Hi, I'm your medical assistant. How can I help you today?")
-    
+
     # Text input for user
     user_input = st.text_input("You:")
     
