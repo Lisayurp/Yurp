@@ -72,7 +72,7 @@ st.markdown(
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(to right, #add8e6, #ffa07a); /* Light blue to light salmon */
+        background: linear-gradient(to right, #add8e6, #ffa07a); /* dark blue to light salmon */
         color: #333; /* Set default text color */
         font-family: Arial, sans-serif;
     }
@@ -83,7 +83,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
-st.title('Streamlit App with Gradient Background')
-st.write('This app has a light blue to orange gradient background.')
 
