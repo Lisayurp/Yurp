@@ -13,7 +13,7 @@ pairs = [
     (r"my head hurts(.*)", "You should take some painkillers and rest. If it persists, consult a doctor."),
     (r"(.*) fever", "You should take some rest, stay hydrated, and monitor your temperature. Consult a doctor if necessary."),
     (r"(.*) cough", "You may have a cold or another respiratory issue. Rest and drink fluids. See a doctor if symptoms persist."),
-    (r"(.*) stomachache", "Avoid heavy meals and try drinking herbal tea. If the pain is severe or persists, consult a doctor."),
+    (r"(.*) stomach", "Avoid heavy meals and try drinking herbal tea. If the pain is severe or persists, consult a doctor."),
     (r"(.*) tired(.*)", "Make sure you're getting enough rest and managing stress. If fatigue continues, consult a healthcare professional."),
     (r"(.*) advice(.*)", "I'm not a doctor, but it's important to consult a healthcare professional for medical advice."),
     (r"quit", "Thank you. Take care!")
@@ -28,7 +28,6 @@ def respond(user_input):
     return "I'm sorry, I didn't understand that. Can you please provide more details?"
 
 def chatbot():
-    st.title("Medical Assistant Chatbot")
     st.write("Hi, I'm your medical assistant. How can I help you today?")
     
 
