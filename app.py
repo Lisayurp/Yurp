@@ -61,23 +61,29 @@ if __name__ == "__main__":
 
 import streamlit as st
 
-# Add custom CSS to the app
+# Custom CSS for background
 st.markdown(
     """
     <style>
     body {
-        background-color: #f0f0f0; /* Light gray background */
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to right, #add8e6, #ffa07a); /* Light blue to light salmon */
+        color: #333; /* Set default text color */
+        font-family: Arial, sans-serif;
     }
-
     .stApp {
-        background: url('https://example.com/background-image.jpg') no-repeat center center fixed; 
-        background-size: cover; /* Cover the entire page with the background image */
+        background: transparent;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-st.title('My Streamlit App')
-st.write('Hello, world!')
+st.title('Streamlit App with Gradient Background')
+st.write('This app has a light blue to orange gradient background.')
 
