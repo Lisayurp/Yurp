@@ -14,7 +14,7 @@ import streamlit as st
 
 prompt = st.chat_input("What's Up")
 if prompt:
-    st.write("{name}: {prompt}")
+    st.write(f"{name}: {prompt}")
     
 import re
 
