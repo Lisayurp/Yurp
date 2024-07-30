@@ -1,9 +1,6 @@
 import streamlit as st
 
 st.title("Hi! My name is Rhea")
-def chatbot():
-    st.write("Hi, I'm your pediatric assistant. How can I help you today?") 
-    
 name = st.text_input("Enter your name:")
 if name:
     st.write(f"Hello, {name}! Welcome to KidzCareHub.")
