@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("Hi! my name Rhea")
+st.title("Hi! My name Rhea")
 name = st.text_input("Enter your name:")
 
 if name:
