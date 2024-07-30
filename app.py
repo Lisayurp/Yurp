@@ -29,16 +29,9 @@ def respond(user_input):
         if re.search(pattern, user_input):
             return response
     return "I'm sorry, I didn't understand that. Can you please provide more details?"
-
-
-
-# Example conversation loop
-import streamlit as st
+    
 user_input = input(f"{name}:" )
-prompt = st.chat_input("Say something")
-if prompt:
-    st.write(f"User has sent the following prompt: {prompt}")
-    # Text input for user
+
   
     # Check if user wants to quit
 if user_input.lower() == "quit":
@@ -50,9 +43,6 @@ else:
 
 if __name__ == "__main__":
     chatbot()
-
-
-
 
 import streamlit as st
 
