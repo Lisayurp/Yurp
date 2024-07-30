@@ -6,6 +6,10 @@ name = st.text_input("Enter your name:")
 if name:
     st.write(f"Hello, {name}! Welcome to KidzCareHub.")
 
+def chatbot():
+    st.write("Hi, I'm your pediatric assistant. How can I help you today?")
+    
+
 import streamlit as st
 
 prompt = st.chat_input("What's Up")
@@ -33,9 +37,7 @@ def respond(user_input):
             return response
     return "I'm sorry, I didn't understand that. Can you please provide more details?"
 
-def chatbot():
-    st.write("Hi, I'm your pediatric assistant. How can I help you today?")
-    
+
 
 # Example conversation loop
 
