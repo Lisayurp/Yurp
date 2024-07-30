@@ -40,8 +40,7 @@ def chatbot():
 # Example conversation loop
 
     # Text input for user
-    user_input = st.text_input("You:")
-    
+  
     # Check if user wants to quit
     if user_input.lower() == "quit":
         st.write("Rhea: Thank you. Take care!")
