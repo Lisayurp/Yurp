@@ -26,7 +26,6 @@ def respond(user_input):
             return response
     return "I'm sorry, I didn't understand that. Can you please provide more details?"
 
-st.write(
 prompt = st.chat_input("What's up") 
 
 if prompt: 
