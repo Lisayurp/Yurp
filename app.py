@@ -26,17 +26,14 @@ def respond(user_input):
             return response
     return "I'm sorry, I didn't understand that. Can you please provide more details?"
 
+st.write(
 prompt = st.chat_input("What's up") 
 
 if prompt: 
-
     response = respond(prompt) 
-
     st.write(f"Rhea: {response}") 
-
 user_input = input(f"{name}:" )
 
-  
     # Check if user wants to quit
 if user_input.lower() == "quit":
         st.write("Rhea: Thank you. Take care!")
@@ -48,7 +45,7 @@ else:
 if __name__ == "__main__":
     chatbot()
 
-
+streamlit run app.py
 st.markdown(
     """
     <style>
