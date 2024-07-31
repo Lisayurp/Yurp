@@ -33,8 +33,6 @@ if prompt:
     st.write(f"Rhea: {response}") 
 user_input = input(f"user:" )
 
-
-
     # Check if user wants to quit
 if user_input.lower() == "quit":
         st.write("Rhea: Thank you. Take care!")
