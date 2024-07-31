@@ -5,11 +5,6 @@ name = st.text_input("Enter your name:")
 if name:
     st.write(f"Hello, {name}! Welcome to KidzCareHub.")
 
-prompt = st.chat_input("Say something")
-if prompt:
-    st.write(f"User has sent the following prompt: {prompt}")
-    
-import streamlit as st
 import re
 
 # Define pairs of patterns and responses
@@ -30,7 +25,12 @@ def respond(user_input):
         if re.search(pattern, user_input):
             return response
     return "I'm sorry, I didn't understand that. Can you please provide more details?"
-    
+
+prompt = st.chat_input("Say something")
+if prompt:
+    response = respond(prompt)
+    st.write(f"Rhea: {response}")
+
 user_input = input(f"{name}:" )
 
   
