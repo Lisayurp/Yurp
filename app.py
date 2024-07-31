@@ -25,13 +25,12 @@ def respond(user_input):
         if re.search(pattern, user_input):
             return response
     return "I'm sorry, I didn't understand that. Can you please provide more details?"
-    
-    st.write(f"{name}: {prompt}")
-    
-prompt = st.chat_input("What's up")
-if prompt:
-    response = respond(prompt)
-    st.write(f"Rhea: {response}")
+
+with st.sidebar:
+    messages = st.container(height=300)
+    if prompt := st.chat_input("Say something"):
+        messages.chat_message("user").write(prompt)
+        messages.chat_message("assistant").write(f"Echo: {prompt}")
 
 
 user_input = input(f"{name}:" )
