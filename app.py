@@ -3,7 +3,7 @@ import streamlit as st
 st.title("Welcom to KidzCareHub")
 name = st.text_input("Enter your name:")
 if name:
-    st.write(f"Hello, {name}! I'm Rhea.")
+    st.write(f"Hello, {name}! I'm Rhea, I will be your pediatric assitant.")
 
 import re
 
