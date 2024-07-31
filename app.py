@@ -27,10 +27,11 @@ def respond(user_input):
     return "I'm sorry, I didn't understand that. Can you please provide more details?"
 
 with st.sidebar:
-    messages = st.container(height=300)
-    if prompt := st.chat_input("Say something"):
-        messages.chat_message("user").write(prompt)
-        messages.chat_message("assistant").write(f"Echo: {prompt}")
+    messages = st.container(height=700)
+    if prompt := st.chat_input("What's up f"{name}"):
+        messages.chat_message("{name}").write(prompt)
+        response = respond(prompt)     
+        messages.chat_message("Rhea").write(f"Rhea: {response}")
 
 
 user_input = input(f"{name}:" )
