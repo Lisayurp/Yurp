@@ -43,28 +43,12 @@ else:
 
 if __name__ == "__main__":
     chatbot()
-
+    
 st.markdown(
     """
     <style>
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(to right, #4169e1, #ffa07a, #ffffe0); /* Royal blue, orange, and light yellow */
-        color: #333; /* Set default text color */
-        font-family: Arial, sans-serif;
-    }
     .stApp {
-        background: transparent;
+        background: linear-gradient(to right, #4169e1, #ffa07a, #ffffe0);
     }
     </style>
     """,
-    unsafe_allow_html=True
-)
-
-
-    
