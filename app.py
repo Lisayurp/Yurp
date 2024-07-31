@@ -28,8 +28,8 @@ def respond(user_input):
 
 with st.sidebar:
     messages = st.container(height=700)
-    if prompt := st.chat_input("What's up f"{name}"):
-        messages.chat_message("{name}").write(prompt)
+    if prompt := st.chat_input(f"What's up {name}!"):
+        messages.chat_message(f"{name}!").write(prompt)
         response = respond(prompt)     
         messages.chat_message("Rhea").write(f"Rhea: {response}")
 
