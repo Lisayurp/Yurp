@@ -33,6 +33,9 @@ if prompt:
     st.write(f"Rhea: {response}") 
 user_input = input(f"{name}:" )
 
+if prompt:
+    st.write(f"{name}: {prompt}")
+
     # Check if user wants to quit
 if user_input.lower() == "quit":
         st.write("Rhea: Thank you. Take care!")
@@ -43,12 +46,5 @@ else:
 
 if __name__ == "__main__":
     chatbot()
+
     
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background: linear-gradient(to right, #4169e1, #ffa07a, #ffffe0);
-    }
-    </style>
-    """,
