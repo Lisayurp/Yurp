@@ -26,10 +26,15 @@ def respond(user_input):
             return response
     return "I'm sorry, I didn't understand that. Can you please provide more details?"
 
-prompt = st.chat_input("Say something")
+prompt = st.chat_input("What's up")
+if prompt:
+    st.write(f"{name}: {prompt}")
+
+prompt = st.chat_input("What's up")
 if prompt:
     response = respond(prompt)
     st.write(f"Rhea: {response}")
+
 
 user_input = input(f"{name}:" )
 
