@@ -31,10 +31,9 @@ prompt = st.chat_input("What's up")
 if prompt: 
     response = respond(prompt) 
     st.write(f"Rhea: {response}") 
-user_input = input(f"{name}:" )
+user_input = input(f"user:" )
 
-if prompt:
-    st.write(f"{name}: {prompt}")
+
 
     # Check if user wants to quit
 if user_input.lower() == "quit":
