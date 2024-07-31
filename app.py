@@ -1,9 +1,9 @@
 import streamlit as st
 
-st.title("Hi! My name is Rhea")
+st.title("Welcom to KidzCareHub")
 name = st.text_input("Enter your name:")
 if name:
-    st.write(f"Hello, {name}! Welcome to KidzCareHub.")
+    st.write(f"Hello, {name}! I'm Rhea.")
 
 import re
 
