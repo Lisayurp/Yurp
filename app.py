@@ -44,6 +44,8 @@ else:
 if __name__ == "__main__":
     chatbot()
 
+streamlit run app.py
+
 import streamlit as st
 
 # Add custom CSS to set a gradient background
