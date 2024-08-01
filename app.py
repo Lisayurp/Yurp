@@ -1,5 +1,5 @@
 import streamlit as st
-
+!pip install --upgrade streamlit
 st.title("Welcom to KidzCareHub")
 name = st.text_input("Enter your name:")
 if name:
