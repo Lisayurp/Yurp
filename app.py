@@ -44,11 +44,11 @@ else:
 if __name__ == "__main__":
     chatbot()
 
-
 import streamlit as st
+import streamlit.components.v1 as components
 
 # Add custom CSS to set a gradient background
-st.markdown(
+components.html(
     """
     <style>
     /* Set gradient background for the entire app */
@@ -60,10 +60,8 @@ st.markdown(
     }
     </style>
     """,
-    unsafe_allow_html=True
+    height=0
 )
 
-# Main content of the Streamlit app
-st.title("My Streamlit App with Gradient Background")
-st.write("This is an example app with a gradient background.")
+
    
