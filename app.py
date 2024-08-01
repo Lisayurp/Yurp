@@ -1,50 +1,223 @@
-import streamlit as st
+import streamlit as st 
 
-st.title("Welcom to KidzCareHub")
-name = st.text_input("Enter your name:")
-if name:
-    st.write(f"Hello, {name}! I'm Rhea, I will be your pediatric assitant.")
+import time 
 
-import re
+  
 
-# Define pairs of patterns and responses
-pairs = [
-    (r"my head hurts(.*)", "You should take some painkillers and rest. If it persists, consult a doctor."),
-    (r"(.*) fever", "You should take some rest, stay hydrated, and monitor your temperature. Consult a doctor if necessary."),
-    (r"(.*) cough", "You may have a cold or another respiratory issue. Rest and drink fluids. See a doctor if symptoms persist."),
-    (r"(.*) stomach", "Avoid heavy meals and try drinking herbal tea. If the pain is severe or persists, consult a doctor."),
-    (r"(.*) tired(.*)", "Make sure you're getting enough rest and managing stress. If fatigue continues, consult a healthcare professional."),
-    (r"(.*) advice(.*)", "I'm not a doctor, but it's important to consult a healthcare professional for medical advice."),
-    (r"quit", "Thank you. Take care!")
-]
+# Initialize session state for history 
 
-# Function to respond to user input based on defined patterns
-def respond(user_input):
-    user_input = user_input.lower()# Convert input to lowercase for case-insensitive matching
-    for pattern, response in pairs:
-        if re.search(pattern, user_input):
-            return response
-    return "I'm sorry, I didn't understand that. Can you please provide more details?"
+if 'history' not in st.session_state: 
 
-prompt = st.chat_input("What's up") 
+    st.session_state.history = [] 
 
-if prompt: 
-    response = respond(prompt) 
-    st.write(f"Rhea: {response}") 
-user_input = input(f"user:" )
+  
 
-    # Check if user wants to quit
-if user_input.lower() == "quit":
-        st.write("Rhea: Thank you. Take care!")
-else:
-        # Get response based on user input
-        response = respond(user_input)
-        st.write("Rhea:", response)
+def add_to_history(message): 
 
-if __name__ == "__main__":
-    chatbot()
+    st.session_state.history.append(message) 
 
+  
 
+def main(): 
 
+    st.title("KidCare Bot - Your Pediatric Care Assistant") 
 
-   
+  
+
+    st.sidebar.title("Navigation") 
+
+    pages = ["Welcome", "General Inquiry", "Symptom Checker", "Development Milestones", "Nutrition and Diet", "Vaccination Schedule"] 
+
+    choice = st.sidebar.radio("Go to", pages) 
+
+  
+
+    if choice == "Welcome": 
+
+        st.write("Welcome to the KidCare Bot! How can I assist you today?") 
+
+  
+
+    elif choice == "General Inquiry": 
+
+        if st.button("Are there any general questions regarding pediatric care you would like to know about?"): 
+
+            add_to_history("User: Asked about general questions") 
+
+  
+
+            # Provide general information or answer question 
+
+            st.write("KidCare Bot: Here is some information that might help you with pediatric care...") 
+
+            st.markdown("- **Regular Check-ups**: Infants should have check-ups at 2-4 weeks, 2, 4, 6, 9, and 12 months. Toddlers typically need visits at 15, 18, and 24 months, then annually after age 3.") 
+
+            st.markdown("- **Developmental Milestones**: These include physical, cognitive, and social-emotional skills such as sitting up, walking, talking, and interacting with others.") 
+
+            st.markdown("- **Healthy Diet**: A balanced diet includes fruits, vegetables, whole grains, proteins, and dairy. Limit sugars and unhealthy fats.") 
+
+            st.markdown("- **Safety Measures**: Childproof your home, supervise playtime, use safety gear, and teach safety rules.") 
+
+  
+
+    elif choice == "Symptom Checker": 
+
+        if st.button("Is your child experiencing any symptoms that you'd like to know more about?"): 
+
+            add_to_history("User: Interested in symptom checker") 
+
+  
+
+            # Ask for symptom description 
+
+            symptoms = st.text_input("KidCare Bot: Please describe the symptoms:") 
+
+            if symptoms: 
+
+                add_to_history(f"User: Described symptoms - {symptoms}") 
+
+  
+
+                # Provide potential causes and advice on next steps 
+
+                st.write("KidCare Bot: Here are some potential causes and advice on next steps for these symptoms...") 
+
+                st.markdown("- **Fever**: If your child has a fever, ensure they rest and stay hydrated. Use acetaminophen or ibuprofen as directed.") 
+
+                st.markdown("- **Cough**: For a persistent cough, use a humidifier and offer warm fluids. Seek medical advice if it worsens.") 
+
+  
+
+    elif choice == "Development Milestones": 
+
+        if st.button("Would you like information on your child's developmental milestones?"): 
+
+            add_to_history("User: Interested in developmental milestones") 
+
+  
+
+            # Ask for child's age 
+
+            child_age = st.number_input("KidCare Bot: What is your child's age?", min_value=0, max_value=18) 
+
+            if child_age: 
+
+                add_to_history(f"User: Child's age is {child_age}") 
+
+  
+
+                # Provide milestones and tips for age-appropriate activities 
+
+                st.write(f"KidCare Bot: Here are the developmental milestones and tips for age {child_age}...") 
+
+                if child_age < 1: 
+
+                    st.markdown("- **0-6 Months**: Focus on tummy time to strengthen muscles. Encourage reaching and grasping objects.") 
+
+                elif 1 <= child_age < 3: 
+
+                    st.markdown("- **1-2 Years**: Support walking and climbing. Foster language development through talking and reading.") 
+
+                elif 3 <= child_age < 6: 
+
+                    st.markdown("- **3-5 Years**: Promote social skills with group play. Encourage independence in daily tasks like dressing.") 
+
+  
+
+    elif choice == "Nutrition and Diet": 
+
+        if st.button("Do you have any questions about your child's nutrition and diet?"): 
+
+            add_to_history("User: Interested in nutrition and diet") 
+
+  
+
+            # Ask for specific aspect of nutrition 
+
+            nutrition_topic = st.text_input("KidCare Bot: What specific aspect of nutrition are you interested in? (e.g., meal plans, vitamins)") 
+
+            if nutrition_topic: 
+
+                add_to_history(f"User: Asked about {nutrition_topic}") 
+
+  
+
+                # Provide advice and recommendations 
+
+                st.write("KidCare Bot: Here is some advice and recommendations on that topic...") 
+
+                if "meal plans" in nutrition_topic.lower(): 
+
+                    st.markdown("- **Balanced Meals**: Include fruits, vegetables, whole grains, and proteins in every meal.") 
+
+                    st.markdown("- **Snack Ideas**: Offer yogurt, cut-up fruits, and whole-grain crackers as healthy snacks.") 
+
+                elif "vitamins" in nutrition_topic.lower(): 
+
+                    st.markdown("- **Essential Vitamins**: Ensure your child gets enough vitamin D for bone health and vitamin C for immunity.") 
+
+  
+
+    elif choice == "Vaccination Schedule": 
+
+        if st.button("Would you like to know about the recommended vaccination schedule for your child?"): 
+
+            add_to_history("User: Interested in vaccination schedule") 
+
+  
+
+            # Ask for child's age 
+
+            vaccination_age = st.number_input("KidCare Bot: What is your child's age?", min_value=0, max_value=18) 
+
+            if vaccination_age: 
+
+                add_to_history(f"User: Child's age is {vaccination_age}") 
+
+  
+
+                # Provide the recommended vaccination schedule 
+
+                st.write(f"KidCare Bot: Here is the recommended vaccination schedule for age {vaccination_age}...") 
+
+                if vaccination_age < 1: 
+
+                    st.markdown("- **Birth-1 Year**: Vaccines include hepatitis B, rotavirus, DTaP, Hib, pneumococcal, polio, and influenza (seasonal).") 
+
+                elif 1 <= vaccination_age < 6: 
+
+                    st.markdown("- **1-5 Years**: Boosters for DTaP, MMR, varicella, polio, hepatitis A. Annual flu vaccine recommended.") 
+
+                elif 6 <= vaccination_age < 12: 
+
+                    st.markdown("- **6-11 Years**: Boosters for DTaP, HPV, meningococcal, and annual flu vaccine.") 
+
+                elif 12 <= vaccination_age < 18: 
+
+                    st.markdown("- **12-18 Years**: Boosters for Tdap, meningococcal, HPV, annual flu vaccine. Consider COVID-19 vaccine.") 
+
+  
+
+    # Display chat history in sidebar 
+
+    st.sidebar.title("Chat History") 
+
+    for item in st.session_state.history: 
+
+        st.sidebar.write(item) 
+
+  
+
+    st.sidebar.markdown("---") 
+
+    st.sidebar.write("Thank you for using KidCare Bot!") 
+
+  
+
+if __name__ == "__main__": 
+
+    main() 
+
+ 
+
+ 
