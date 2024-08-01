@@ -1,7 +1,5 @@
 import streamlit as st 
 
-import time 
-
   
 
 # Initialize session state for history 
@@ -82,9 +80,15 @@ def main():
 
                 st.write("KidCare Bot: Here are some potential causes and advice on next steps for these symptoms...") 
 
-                st.markdown("- **Fever**: If your child has a fever, ensure they rest and stay hydrated. Use acetaminophen or ibuprofen as directed.") 
+                if "fever" in symptoms.lower(): 
 
-                st.markdown("- **Cough**: For a persistent cough, use a humidifier and offer warm fluids. Seek medical advice if it worsens.") 
+                    st.markdown("- **Fever**: If your child has a fever, ensure they rest and stay hydrated. Use acetaminophen or ibuprofen as directed.") 
+
+                    st.markdown("- **High Fever**: Seek medical advice if fever is high or persistent, or accompanied by other symptoms.") 
+
+                if "cough" in symptoms.lower(): 
+
+                    st.markdown("- **Cough**: For a persistent cough, use a humidifier and offer warm fluids. Seek medical advice if it worsens or lasts more than a week.") 
 
   
 
@@ -114,13 +118,19 @@ def main():
 
                     st.markdown("- **0-6 Months**: Focus on tummy time to strengthen muscles. Encourage reaching and grasping objects.") 
 
+                    st.markdown("- **Language Development**: Begin to coo and make sounds in response to interactions.") 
+
                 elif 1 <= child_age < 3: 
 
                     st.markdown("- **1-2 Years**: Support walking and climbing. Foster language development through talking and reading.") 
 
+                    st.markdown("- **Social Skills**: Begin to play alongside other children and imitate simple actions.") 
+
                 elif 3 <= child_age < 6: 
 
                     st.markdown("- **3-5 Years**: Promote social skills with group play. Encourage independence in daily tasks like dressing.") 
+
+                    st.markdown("- **School Readiness**: Begin to recognize letters, numbers, and colors.") 
 
   
 
@@ -150,11 +160,13 @@ def main():
 
                     st.markdown("- **Balanced Meals**: Include fruits, vegetables, whole grains, and proteins in every meal.") 
 
-                    st.markdown("- **Snack Ideas**: Offer yogurt, cut-up fruits, and whole-grain crackers as healthy snacks.") 
+                    st.markdown("- **Healthy Snacks**: Offer yogurt, cut-up fruits, and whole-grain crackers as snacks.") 
 
                 elif "vitamins" in nutrition_topic.lower(): 
 
                     st.markdown("- **Essential Vitamins**: Ensure your child gets enough vitamin D for bone health and vitamin C for immunity.") 
+
+                    st.markdown("- **Supplements**: Discuss with your pediatrician before giving any supplements.") 
 
   
 
@@ -217,6 +229,10 @@ def main():
 if __name__ == "__main__": 
 
     main() 
+
+ 
+
+ 
 
  
 
