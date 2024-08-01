@@ -11,7 +11,7 @@ if "messages" not in st.session_state:
 
 # Define pairs of patterns and responses
 pairs = [
-    (r"check-up", "Infants should have check-ups at 2-4 weeks, 2, 4, 6, 9, and 12 months. Toddlers typically need visits at 15, 18, and 24 months, then annually after age 3."),
+    (r"check up", "Infants should have check-ups at 2-4 weeks, 2, 4, 6, 9, and 12 months. Toddlers typically need visits at 15, 18, and 24 months, then annually after age 3."),
     (r"developmental milestones", "Developmental milestones include physical, cognitive, and social-emotional skills such as sitting up, walking, talking, and interacting with others. Specific milestones vary by age."),
     (r"normal development", "Regular check-ups with your pediatrician can monitor development. If you have concerns, discuss them with your pediatrician who may recommend evaluations or referrals to specialists."),
     (r"vaccinations", "Vaccination schedules vary but typically include vaccines for diseases like hepatitis, polio, measles, mumps, rubella, chickenpox, and HPV. Your pediatrician can provide a schedule based on age and health."),
