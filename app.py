@@ -1,16 +1,11 @@
 import streamlit as st
-
-st.title("Hi! My name is Rhea")
-name = st.text_input("Enter your name:")
-if name:
-    st.write(f"Hello, {name}! Welcome to KidzCareHub.")
-
-prompt = st.chat_input("Say something")
-if prompt:
-    st.write(f"User has sent the following prompt: {prompt}")
-    
-import streamlit as st
 import re
+
+st.title("KidzCareHub")
+
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
 # Define pairs of patterns and responses
 pairs = [
@@ -25,26 +20,41 @@ pairs = [
 
 # Function to respond to user input based on defined patterns
 def respond(user_input):
-    user_input = user_input.lower()# Convert input to lowercase for case-insensitive matching
+    user_input = user_input.lower()
     for pattern, response in pairs:
         if re.search(pattern, user_input):
             return response
     return "I'm sorry, I didn't understand that. Can you please provide more details?"
-    
-user_input = input(f"{name}:" )
 
-  
-    # Check if user wants to quit
-if user_input.lower() == "quit":
-        st.write("Rhea: Thank you. Take care!")
-else:
-        # Get response based on user input
-        response = respond(user_input)
-        st.write("Rhea:", response)
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-if __name__ == "__main__":
-    chatbot()
+# React to user input
+if prompt := st.chat_input("What would you like to know?"):
+    # Display user message in chat message container
+    st.chat_message("user").markdown(prompt)
+    # Add user message to chat history
+    st.session_state.messages.append({"role": "user", "content": prompt})
 
+    response = respond(prompt)
+    # Display assistant response in chat message container
+    with st.chat_message("assistant"):
+        st.markdown(f"Rhea: {response}")
+    # Add assistant response to chat history
+    st.session_state.messages.append({"role": "assistant", "content": f"Rhea: {response}"})
 
-
-
+# Custom CSS for background gradient
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background: linear-gradient(to right, #4169e1, #ffa07a, #ffffe0);
+        color: #333;
+        font-family: Arial, sans-serif;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
