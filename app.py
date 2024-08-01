@@ -1,5 +1,5 @@
 import streamlit as st
-pip install --upgrade streamlit
+
 st.title("Welcom to KidzCareHub")
 name = st.text_input("Enter your name:")
 if name:
@@ -44,23 +44,6 @@ else:
 if __name__ == "__main__":
     chatbot()
 
-import streamlit as st
-import streamlit.components.v1 as components
-
-# Add custom CSS to set a gradient background
-components.html(
-    """
-    <style>
-    /* Set gradient background for the entire app */
-    .stApp {
-        background: linear-gradient(90deg, royalblue, yellow, white); /* Gradient from royal blue to bright yellow to white */
-        background-size: cover; /* Ensure the gradient covers the whole background */
-        background-repeat: no-repeat; /* Prevent the gradient from repeating */
-        background-attachment: fixed; /* Fix the gradient in place while scrolling */
-    }
-    </style>
-    """,
-    height=0
 )
 
 
