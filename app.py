@@ -85,7 +85,7 @@ def main():
                     st.markdown("- **Fever**: If your child has a fever, ensure they rest and stay hydrated. Use acetaminophen or ibuprofen as directed.") 
 
                     st.markdown("- **High Fever**: Seek medical advice if fever is high or persistent, or accompanied by other symptoms.") 
-
+st.write (symptoms)
                 if "cough" in symptoms.lower(): 
 
                     st.markdown("- **Cough**: For a persistent cough, use a humidifier and offer warm fluids. Seek medical advice if it worsens or lasts more than a week.") 
