@@ -1,42 +1,33 @@
 import streamlit as st
-from openai import OpenAI
+import openai
 
-# Initialize the OpenAI client with your API key
-client = OpenAI(api_key='sk-None-JeDt7WpRoaTJpWXRCeGST3BlbkFJDiaYTqLYuPl7UPmgIzCS')
+# Set up OpenAI API key
+openai.api_key = "your-api-key-here"
 
-def get_response(data_description, question):
-    # Combine the data description and question into a single prompt
-    prompt = f"""
-    You are a pediatric care assistant named Rhea. Here is your background:
-    {data_description}
-    
-    Based on this information, please answer the following question: {question}
-    """
-    
-    # Call the OpenAI API
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",  # You can change this to another model if needed
-        messages=[
-            {"role": "system", "content": "You are a helpful pediatric care assistant."},
-            {"role": "user", "content": prompt}
-        ]
+def get_health_advice(symptom):
+    prompt = f"Provide child-friendly advice for a parent whose child is experiencing {symptom}. Include when to see a doctor."
+    response = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=prompt,
+        max_tokens=150,
+        n=1,
+        stop=None,
+        temperature=0.7,
     )
-    
-    # Extract the response text
-    return response.choices[0].message.content.strip()
+    return response.choices[0].text.strip()
 
-# Streamlit app
+# Streamlit interface
 st.title("KidzCareHub")
+st.write("Get friendly pediatric health advice")
 
-data_description = """
-Welcome to KidzCareHub, your trusted pediatric care assistant. I'm Rhea, here to provide you with helpful information and advice on your child's health, nutrition, development, and well-being. Whether you have questions about common childhood illnesses, developmental milestones, or general parenting tips, I'm here to help guide you with reliable information. Please remember, while I strive to offer accurate and helpful guidance, it's always best to consult with a healthcare professional for medical advice and treatment.
-"""
+symptom = st.text_input("What symptom is your child experiencing?")
 
-question = st.text_input("Enter A Question")
-
-if st.button("Get Answer"):
-    if question:
-        answer = get_response(data_description, question)
-        st.write(answer)
+if st.button("Get Advice"):
+    if symptom:
+        with st.spinner("Generating advice..."):
+            advice = get_health_advice(symptom)
+        st.write(advice)
     else:
-        st.write("Please enter a question.")
+        st.write("Please enter a symptom.")
+
+st.sidebar.write("Note: This app provides general advice. Always consult a healthcare professional for medical concerns.")
