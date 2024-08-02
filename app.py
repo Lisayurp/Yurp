@@ -1,28 +1,28 @@
 import streamlit as st
-import re
-from langchain.chains import LLMChain
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain
 
-llm = OpenAI(api_key = 'sk-None-1Sed5BjJFyqRO5MCNbETT3BlbkFJRYElnAB7mQO0csnjMLbp')
-
+# Set up the page
 st.set_page_config(page_title="KidzCareHub", page_icon="🏥", layout="wide")
 
-st.title("🌟!Welcome to KidzCareHub!🌟")
+# Initialize OpenAI LLM
+llm = OpenAI(api_key='sk-None-JeDt7WpRoaTJpWXRCeGST3BlbkFJDiaYTqLYuPl7UPmgIzCS')  # Replace with your actual API key
+
+# Create a prompt template
+prompt = PromptTemplate(
+    input_variables=["question"],
+    template="You are a pediatric care assistant named KidzCareHub. Answer the following question about child health, development, nutrition, or safety: {question}"
+)
+
+# Create an LLM chain
+chain = LLMChain(llm=llm, prompt=prompt)
+
+st.title("🌟 Welcome to KidzCareHub! 🌟")
 
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
-
-
-
-# Function to respond to user input based on defined patterns
-def respond(user_input):
-    user_input = user_input.lower()
-    for pattern, response in pairs:
-        if re.search(pattern, user_input):
-            return response
-    return "I'm not sure about that specific topic. Could you try asking about common pediatric care topics like health, nutrition, development, or safety?"
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
@@ -30,18 +30,20 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # React to user input
-if prompt := st.chat_input("Ask a question about pediatric care"):
+if prompt := st.chat_input("I;m here to assist you"):
     # Display user message in chat message container
     st.chat_message("user").markdown(prompt)
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    response = respond(prompt)
+    # Generate response using OpenAI
+    response = chain.run(question=prompt)
+
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        st.markdown(f"KidzCareHub: {response}")
+        st.markdown(f"Rhea: {response}")
     # Add assistant response to chat history
-    st.session_state.messages.append({"role": "assistant", "content": f"KidzCareHub: {response}"})
+    st.session_state.messages.append({"role": "assistant", "content": f"Rhea: {response}"})
 
 # Sidebar with additional information
 st.sidebar.title("About KidzCareHub")
@@ -110,4 +112,3 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
