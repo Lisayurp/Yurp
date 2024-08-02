@@ -30,7 +30,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # React to user input
-if prompt := st.chat_input("I;m here to assist you"):
+if prompt := st.chat_input("I'm here to assist you"):
     # Display user message in chat message container
     st.chat_message("user").markdown(prompt)
     # Add user message to chat history
@@ -46,13 +46,19 @@ if prompt := st.chat_input("I;m here to assist you"):
     st.session_state.messages.append({"role": "assistant", "content": f"Rhea: {response}"})
 
 # Sidebar with additional information
-st.sidebar.title("About KidzCareHub")
+st.sidebar.title("About Rhea")
 st.sidebar.info(
     "KidzCareHub is your comprehensive digital pediatric care assistant. "
     "Ask questions about child health, development, nutrition, safety, and more. "
     "Remember, this app provides general information and should not replace professional medical advice."
 )
 
+try:
+    response = chain.run(question=prompt)
+except Exception as e:
+    st.error(f"An error occurred: {str(e)}")
+    return
+    
 # Custom CSS for design
 st.markdown(
     """
