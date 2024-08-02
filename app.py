@@ -1,3 +1,4 @@
+!pip install streamlit langchain openai
 import streamlit as st
 from langchain.chains import LLMChain
 from langchain.llms import OpenAI
