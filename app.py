@@ -7,7 +7,7 @@ from langchain.chains import LLMChain
 st.set_page_config(page_title="KidzCareHub", page_icon="🏥", layout="wide")
 
 # Initialize OpenAI LLM
-llm = OpenAI(api_key='sk-None-JeDt7WpRoaTJpWXRCeGST3BlbkFJDiaYTqLYuPl7UPmgIzCS')  # Replace with your actual API key
+llm = OpenAI(api_key='sk-4Yrq0ICDnFpHbFhP7qaEAV97-HiEBQDyEash8AjxVVT3BlbkFJ4DOsXwAVLGgDGFjCQzL0NlKwDV6YFN_sE224DQLlgA')  # Replace with your actual API key
 
 # Create a prompt template
 prompt = PromptTemplate(
@@ -30,61 +30,57 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # React to user input
-if prompt := st.chat_input("I'm here to assist you"):
+if user_input := st.chat_input("I'm here to assist you"):
     # Display user message in chat message container
-    st.chat_message("user").markdown(prompt)
+    st.chat_message("user").markdown(user_input)
     # Add user message to chat history
-    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.session_state.messages.append({"role": "user", "content": user_input})
 
-    # Generate response using OpenAI
-    response = chain.run(question=prompt)
+    try:
+        # Generate response using OpenAI
+        response = chain.run(question=user_input)
 
-    # Display assistant response in chat message container
-    with st.chat_message("assistant"):
-        st.markdown(f"Rhea: {response}")
-    # Add assistant response to chat history
-    st.session_state.messages.append({"role": "assistant", "content": f"Rhea: {response}"})
+        # Display assistant response in chat message container
+        with st.chat_message("assistant"):
+            st.markdown(f"KidzCareHub: {response}")
+        # Add assistant response to chat history
+        st.session_state.messages.append({"role": "assistant", "content": f"KidzCareHub: {response}"})
+    except Exception as e:
+        st.error(f"An error occurred: {str(e)}")
 
 # Sidebar with additional information
-st.sidebar.title("About Rhea")
+st.sidebar.title("About KidzCareHub")
 st.sidebar.info(
     "KidzCareHub is your comprehensive digital pediatric care assistant. "
     "Ask questions about child health, development, nutrition, safety, and more. "
     "Remember, this app provides general information and should not replace professional medical advice."
 )
 
-try:
-    response = chain.run(question=prompt)
-except Exception as e:
-    st.error(f"An error occurred: {str(e)}")
-    return
-    
-# Custom CSS for design
+# Custom CSS for design with pink background
 st.markdown(
     """
     <style>
     .stApp {
-        background: linear-gradient(135deg, #FFD1DC 0%, #FFF0F5 100%);
-        font-family: 'Comic Sans MS', cursive, sans-serif;
+        background-color: #FFB6C1;
+        font-family: 'Arial', sans-serif;
     }
     h1 {
-        color: #FF69B4;
+        color: #FF1493;
         text-align: center;
         font-size: 3em;
         margin-bottom: 30px;
-        text-shadow: 2px 2px 4px rgba(255,105,180,0.3);
+        text-shadow: 2px 2px 4px rgba(255,20,147,0.3);
     }
     .stChatMessage {
         background-color: rgba(255, 255, 255, 0.8) !important;
         border-radius: 20px !important;
         padding: 15px !important;
         margin-bottom: 15px !important;
-        box-shadow: 0 4px 6px rgba(255,105,180,0.2);
-        border: 2px solid #FFB6C1;
+        box-shadow: 0 4px 6px rgba(255,20,147,0.2);
     }
     .stChatMessage [data-testid="stChatMessageContent"] {
         background-color: transparent !important;
-        color: #8B4513;
+        color: #333;
         font-size: 1.1em;
     }
     .stChatMessage [data-testid="stChatMessageAvatar"] {
@@ -95,24 +91,12 @@ st.markdown(
         border-radius: 25px;
         padding: 12px 20px;
         font-size: 1.1em;
-        border: 2px solid #FFB6C1;
+        border: 2px solid #FF69B4;
     }
     .stSidebar {
         background-color: rgba(255, 192, 203, 0.2);
         padding: 20px;
         border-radius: 15px;
-    }
-    .stButton > button {
-        background-color: #FF69B4;
-        color: white;
-        border-radius: 25px;
-        padding: 10px 20px;
-        font-size: 1.1em;
-        border: none;
-        box-shadow: 0 4px 6px rgba(255,105,180,0.2);
-    }
-    .stButton > button:hover {
-        background-color: #FF1493;
     }
     </style>
     """,
