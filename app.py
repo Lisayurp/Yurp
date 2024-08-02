@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 
 # Set up OpenAI API key
-openai.api_key = "your-api-key-here"
+openai.api_key = "sk-YlH7RUmfSsSt95JbThxfN3c_NxWcW49D2PvswW65igT3BlbkFJsMz6JOaJRzyzvqToAF0GCWjdyVzv1ShV10URjSEpQA"
 
 def get_health_advice(symptom):
     prompt = f"Provide child-friendly advice for a parent whose child is experiencing {symptom}. Include when to see a doctor."
