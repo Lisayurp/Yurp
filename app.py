@@ -1,33 +1,47 @@
 import streamlit as st
-import openai
+from openai import OpenAI
+import os
 
-# Set up OpenAI API key
-openai.api_key = "sk-YlH7RUmfSsSt95JbThxfN3c_NxWcW49D2PvswW65igT3BlbkFJsMz6JOaJRzyzvqToAF0GCWjdyVzv1ShV10URjSEpQA"
+# Initialize OpenAI client
+client = OpenAI(api_key=os.environ.get("sk-3i2lVXMg1xtH22gJImSGVJDd6rnC_VzaANO8h8uqvHT3BlbkFJ6SzF7KZftvXNPMZzEgpuPXmNPX0yLIxpeUeAl8YMAA"))
 
-def get_health_advice(symptom):
-    prompt = f"Provide child-friendly advice for a parent whose child is experiencing {symptom}. Include when to see a doctor."
-    response = openai.Completion.create(
-        engine="text-davinci-002",
-        prompt=prompt,
-        max_tokens=150,
-        n=1,
-        stop=None,
-        temperature=0.7,
-    )
-    return response.choices[0].text.strip()
+st.title("KidzCareHub AI Chatbot")
 
-# Streamlit interface
-st.title("KidzCareHub")
-st.write("Get friendly pediatric health advice")
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-symptom = st.text_input("What symptom is your child experiencing?")
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-if st.button("Get Advice"):
-    if symptom:
-        with st.spinner("Generating advice..."):
-            advice = get_health_advice(symptom)
-        st.write(advice)
-    else:
-        st.write("Please enter a symptom.")
+# Accept user input
+if prompt := st.chat_input("What is your question?"):
+    # Add user message to chat history
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    # Display user message in chat message container
+    with st.chat_message("user"):
+        st.markdown(prompt)
+    
+    # Generate assistant response
+    with st.chat_message("assistant"):
+        message_placeholder = st.empty()
+        full_response = ""
+        for response in client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": m["role"], "content": m["content"]}
+                for m in st.session_state.messages
+            ],
+            stream=True,
+        ):
+            full_response += (response.choices[0].delta.content or "")
+            message_placeholder.markdown(full_response + "▌")
+        message_placeholder.markdown(full_response)
+    st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-st.sidebar.write("Note: This app provides general advice. Always consult a healthcare professional for medical concerns.")
+# Add a sidebar note
+st.sidebar.markdown("""
+**Note:** This chatbot provides general information and should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always consult with a qualified healthcare provider for medical concerns.
+""")
