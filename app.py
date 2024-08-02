@@ -2,7 +2,7 @@ import streamlit as st
 from openai import OpenAI
 
 # Initialize the OpenAI client with your API key
-client = OpenAI(api_key='sk-4Yrq0ICDnFpHbFhP7qaEAV97-HiEBQDyEash8AjxVVT3BlbkFJ4DOsXwAVLGgDGFjCQzL0NlKwDV6YFN_sE224DQLlgA')
+client = OpenAI(api_key='sk-None-JeDt7WpRoaTJpWXRCeGST3BlbkFJDiaYTqLYuPl7UPmgIzCS')
 
 def get_response(data_description, question):
     # Combine the data description and question into a single prompt
